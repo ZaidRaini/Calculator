@@ -6,9 +6,17 @@ const Calculator = () => {
 
   const handleClick = (value) => {
     if (value === "=") {
+      // Check if the expression is complete (i.e., ends with a number or valid operator)
+      const lastChar = input[input.length - 1];
+
+      if (!input || isNaN(lastChar)) {
+        setResult("Error");
+        return;
+      }
+
       try {
         // eslint-disable-next-line
-        const output = eval(input); // Use eval for simple calculations
+        const output = eval(input); // Simple evaluation
         setResult(output);
       } catch {
         setResult("Error");
